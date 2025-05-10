@@ -1,0 +1,316 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>London Spanish Academy</n>
+  </title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="icon" href="images/logoSpanish.png" type="image/x-icon" />
+  <noscript>
+    <link rel="stylesheet" href="assets/css/noscript.css" />
+  </noscript>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #fff;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 0.5rem;
+    }
+
+    .navbar ul li a:hover,
+    .navbar ul li a.active {
+      color: #007bff;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px;
+      height: 22px;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      height: 4px;
+      border-radius: 2px;
+      background-color: #333;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .navbar.active .menu-toggle span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+
+    .navbar.active .menu-toggle span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .navbar.active .menu-toggle span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+
+    @media (max-width:768px) {
+      .menu-toggle {
+        display: flex;
+      }
+
+      .navbar ul {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        padding: 1rem 0;
+      }
+
+      .navbar.active ul {
+        display: flex;
+      }
+
+      .navbar ul li {
+        margin: 0.5rem 0;
+      }
+
+      .responsive-inline {
+        width: 20% !important;
+      }
+    }
+
+    /* Section spacing */
+    section {
+      padding: 4rem 2rem;
+    }
+
+    /* Testimonials layout */
+    .testimonial-videos {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 2rem auto;
+    }
+
+    .testimonial-video {
+      width: 320px;
+      height: 240px;
+      background: #ddd;
+      border-radius: 12px;
+    }
+
+    .carousel-placeholder {
+      max-width: 800px;
+      margin: 2rem auto;
+      text-align: center;
+      background: #6c63ff;
+      padding: 1rem;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+
+<body class="is-preload">
+  <!-- Navigation -->
+  <header>
+    <nav class="navbar">
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul>
+        <li style="display: flex; align-items: center;">
+          <a href="index.html" style="text-decoration: none; color: #000000;" onmouseover="this.style.color='#ffcc00';"
+            onmouseout="this.style.color='black';">Home</a>
+        </li>
+        <li style="display: flex; align-items: center;">
+          <a href="about.html" style="text-decoration: none; color: black;" onmouseover="this.style.color='#ffcc00';"
+            onmouseout="this.style.color='black';">About Us</a>
+        </li>
+        <li style="display: flex; align-items: center;">
+          <a href="courses.html" style="text-decoration: none; color: black;" onmouseover="this.style.color='#ffcc00';"
+            onmouseout="this.style.color='black';">Courses</a>
+        </li>
+        <li style="display: flex; align-items: center;">
+          <a href="levels.html" style="text-decoration: none; color: black;" onmouseover="this.style.color='#ffcc00';"
+            onmouseout="this.style.color='black';">Levels</a>
+        </li>
+        <li style="display: flex; align-items: center;">
+          <a href="testimonials.html" style="text-decoration: none; color: black;"
+            onmouseover="this.style.color='#ffcc00';" onmouseout="this.style.color='black';">Testimonials</a>
+        </li>
+        <li style="display: flex; align-items: center;">
+          <a href="contactus.html" style="text-decoration: none; color: black;"
+            onmouseover="this.style.color='#ffcc00';" onmouseout="this.style.color='black';">Contact Us</a>
+        </li>
+        <li style="
+			  border: 1px solid black;
+			  border-radius: 20px;
+			  padding: 6px 12px;
+			  display: flex;
+			  align-items: center;
+			">
+          <a href="test.html" style="text-decoration: none; color: black;" onmouseover="this.style.color='#ffcc00';"
+            onmouseout="this.style.color='black';">Spanish Level
+            Test</a>
+        </li>
+      </ul>
+      <img style="width: 10%;" class="responsive-inline" src="images/callanacredit.jpg" />
+      <img style="width: 10%;" class="responsive-inline" src="images/logoSpanish.png" />
+    </nav>
+
+  </header>
+
+
+  <!-- Video Testimonials -->
+  <section style="background-color:#f9f9f9;">
+    <h2 style="text-align:center; margin-bottom:2rem;">Testimonials</h2>
+    <div class="testimonial-videos">
+      <!-- Video placeholders -->
+      <video src="images/testimonio1.mov" loop controls muted autoplay
+        style="width: 320px; height: 570px; background-color: #ddd; border-radius: 12px;">
+      </video>
+      <video src="images/IMG_5478.mov" loop controls muted autoplay
+        style="width: 320px; height: 570px; background-color: #ddd; border-radius: 12px;">
+      </video>
+    </div>
+  </section>
+
+  <!-- Hero -->
+  <section>
+    <style>
+      /* Contenedor flexible */
+      .testimonial-videos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        padding: 0 1rem;
+      }
+
+      /* Imágenes adaptables */
+      .testimonial-videos img {
+        flex: 1 1 calc(33.333% - 1rem);
+        /* 3 columnas */
+        max-width: 300px;
+        /* opcional: límite máximo */
+        width: 100%;
+        border-radius: 30px;
+        object-fit: cover;
+      }
+
+      /* Media query para tablets y pantallas medianas */
+      @media (max-width: 992px) {
+        .testimonial-videos img {
+          flex: 1 1 calc(50% - 1rem);
+          /* 2 columnas */
+        }
+      }
+
+      /* Media query para móviles */
+      @media (max-width: 576px) {
+        .testimonial-videos img {
+          flex: 1 1 100%;
+          /* 1 columna */
+        }
+      }
+    </style>
+
+    <h2 style="text-align:center; margin-bottom:2rem;">Our students recommend us</h2>
+    <div class="testimonial-videos">
+      <img src="images/ourstudents.png" alt="Testimonio 1">
+      <img src="images/CURSO DE ESPAÑOL (3).png" alt="Testimonio 2">
+      <img src="images/CURSO DE ESPAÑOL.png" alt="Testimonio 3">
+    </div>
+  </section>
+
+  <!-- Fun Learning CTA -->
+  <section style="background-color:#f9f9f9;">
+    <h2 style="text-align:center; margin-bottom:2rem;">Have fun learning Spanish!</h2>
+    <div class="testimonial-videos">
+      <!-- Video placeholders -->
+      <video src="images/testimonials1.mov" loop controls muted autoplay
+        style="width: 320px; height: 570px; background-color: #ddd; border-radius: 12px;">
+      </video>
+    </div>
+    <div style="text-align:center;">
+      <a href="contactus.html" class="smooth-scroll-middle" style="
+      display: inline-block;
+      background-color: #fac32c;
+      color: white;
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-size: 17px;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+      text-decoration: none;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;"
+        onmouseover="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 6px 16px rgba(0, 86, 179, 0.3)';"
+        onmouseout="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 4px 12px rgba(0, 123, 255, 0.2)';">
+        BOOK A FREE TRIAL LESSON
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="wrapper style1 align-center">
+    <div class="inner">
+      <ul class="icons">
+        <li><a href="https://www.facebook.com/profile.php?id=61574957597733&sk=about" class="icon brands fa-facebook-f" target="_blank"><span class="label">Facebook</span></a></li>
+        <li><a href="https://www.instagram.com/londonspanishacademy_?igsh=OHl4a2FzdG5vbXdp" class="icon brands fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+        <li><a href="https://wa.me/message/K6O2VEPAKKP5H1" class="icon brands fa-whatsapp" target="_blank"><span class="label">Website</span></a></li>
+      </ul>
+      <p>&copy; London Spanish Academy</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.scrollex.min.js"></script>
+  <script src="assets/js/jquery.scrolly.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggle = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('.navbar');
+      toggle.addEventListener('click', () => nav.classList.toggle('active'));
+    });
+  </script>
+</body>
+
+</html>

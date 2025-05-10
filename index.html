@@ -1,0 +1,904 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>London Spanish Academy</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="icon" href="images/logoSpanish.png" type="image/x-icon" />
+	<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+	<style>
+		/* Enable smooth scrolling for internal links */
+		html {
+			scroll-behavior: smooth;
+		}
+
+		/* Navbar styles */
+		.navbar {
+			background-color: #fff;
+			padding: 1rem 2rem;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			position: sticky;
+			top: 0;
+			z-index: 1000;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.navbar ul {
+			list-style: none;
+			display: flex;
+			justify-content: center;
+			gap: 1.5rem;
+			margin: 0;
+			padding: 0;
+		}
+
+		.navbar ul li a {
+			text-decoration: none;
+			color: #333;
+			font-weight: 500;
+			padding: 0.5rem;
+		}
+
+		.navbar ul li a:hover {
+			color: #007bff;
+		}
+
+		/* Hamburger button */
+		.menu-toggle {
+			display: none;
+			flex-direction: column;
+			justify-content: space-between;
+			width: 28px;
+			height: 22px;
+			cursor: pointer;
+		}
+
+		.menu-toggle span {
+			display: block;
+			height: 4px;
+			border-radius: 2px;
+			background-color: #333;
+			transition: transform 0.3s ease, opacity 0.3s ease;
+		}
+
+		.navbar.active .menu-toggle span:nth-child(1) {
+			transform: translateY(9px) rotate(45deg);
+		}
+
+		.navbar.active .menu-toggle span:nth-child(2) {
+			opacity: 0;
+		}
+
+		.navbar.active .menu-toggle span:nth-child(3) {
+			transform: translateY(-9px) rotate(-45deg);
+		}
+
+		@media (max-width: 768px) {
+			.menu-toggle {
+				display: flex;
+			}
+
+			.navbar ul {
+				display: none;
+				flex-direction: column;
+				align-items: center;
+				position: absolute;
+				top: 100%;
+				left: 0;
+				width: 100%;
+				background: #fff;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+				padding: 1rem 0;
+			}
+
+			.navbar.active ul {
+				display: flex;
+			}
+
+			.navbar ul li {
+				margin: 0.5rem 0;
+			}
+		}
+
+		/* Custom styles for Plans section */
+		.plan-cards {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 2rem;
+			justify-content: center;
+			margin-top: 2rem;
+		}
+
+		.plan-card {
+			background: #f5faff;
+			border-radius: 1rem;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			padding: 2rem;
+			flex: 1 1 250px;
+			max-width: 300px;
+			text-align: center;
+			transition: transform 0.3s, box-shadow 0.3s;
+		}
+
+		.plan-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+		}
+
+		.plan-card h3 {
+			margin-bottom: 1rem;
+			font-size: 1.25rem;
+		}
+
+		.plan-card p {
+			margin: 0.5rem 0;
+			line-height: 1.4;
+		}
+
+		.plan-card .price {
+			font-size: 1.5rem;
+			font-weight: bold;
+			margin: 1rem 0;
+		}
+
+		.plan-card .actions .button {
+			display: inline-block;
+			width: 100%;
+			margin-top: 1rem;
+		}
+
+		.stop {
+			font-size: smaller;
+			color: rgb(0, 0, 0);
+		}
+
+		.start {
+			font-size: 30px;
+			color: #ffcb1e;
+		}
+
+
+		/* Styles para sección HOW TO REGISTER */
+		.register-section {
+			padding: 4rem 2rem;
+			background-color: #fff;
+		}
+
+		.register-header,
+		.register-footer {
+			text-align: center;
+			margin-bottom: 2rem;
+		}
+
+		.register-steps {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 2rem;
+			flex-wrap: wrap;
+			max-width: 1200px;
+			margin: auto;
+		}
+
+		.register-column {
+			display: flex;
+			flex-direction: column;
+			gap: 6rem;
+			flex: 1;
+			align-items: center;
+		}
+
+		.step-card {
+			background-color: transparent;
+			border: 3px solid #ffcc00;
+			padding: 1.5rem;
+			border-radius: 12px;
+			width: 80%;
+			max-width: 300px;
+			text-align: left;
+		}
+
+		.yellow {
+			background-color: #ffcc00;
+			color: black;
+			border-color: #ffcc00;
+		}
+
+		.timeline {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.step-circle {
+			background-color: rgb(255, 80, 80);
+			;
+			color: white;
+			width: 36px;
+			height: 36px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: bold;
+			z-index: 1;
+		}
+
+		.line {
+			width: 2px;
+			background-color: rgb(255, 80, 80);
+			;
+			min-height: 120px;
+		}
+
+		@media (max-width: 768px) {
+			.register-steps {
+				flex-direction: column;
+				align-items: center;
+			}
+
+			.timeline {
+				flex-direction: row;
+				justify-content: space-around;
+				width: 100%;
+			}
+
+			.line,
+			.step-circle {
+				display: none;
+			}
+
+			.register-column {
+				align-items: center;
+				padding-top: 0;
+			}
+
+			.responsive-inline {
+				width: 20% !important;
+			}
+
+			.responsive-flex {
+				flex-direction: column !important;
+				align-items: stretch;
+			}
+		}
+
+		/* Testimonials layout */
+		.testimonial-videos {
+			display: flex;
+			justify-content: center;
+			gap: 2rem;
+			flex-wrap: wrap;
+			max-width: 1200px;
+			margin: 2rem auto;
+		}
+
+		.testimonial-video {
+			width: 320px;
+			height: 240px;
+			background: #ddd;
+			border-radius: 12px;
+		}
+
+		.carousel-placeholder {
+			max-width: 800px;
+			margin: 2rem auto;
+			text-align: center;
+			background: #6c63ff;
+			padding: 1rem;
+			border-radius: 12px;
+		}
+	</style>
+</head>
+
+<body class="is-preload">
+
+	<!-- Navigation -->
+	<header>
+		<nav class="navbar">
+			<div class="menu-toggle">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<ul>
+				<li style="display: flex; align-items: center;">
+					<a href="index.html" style="text-decoration: none; color: #000000;"
+						onmouseover="this.style.color='#ffcc00';" onmouseout="this.style.color='black';">Home</a>
+				</li>
+				<li style="display: flex; align-items: center;">
+					<a href="about.html" style="text-decoration: none; color: black;"
+						onmouseover="this.style.color='#ffcc00';" onmouseout="this.style.color='black';">About Us</a>
+				</li>
+				<li style="display: flex; align-items: center;">
+					<a href="courses.html" style="text-decoration: none; color: black;"
+						onmouseover="this.style.color='#ffcc00';" onmouseout="this.style.color='black';">Courses</a>
+				</li>
+				<li style="display: flex; align-items: center;">
+					<a href="levels.html" style="text-decoration: none; color: black;"
+						onmouseover="this.style.color='#ffcc00';" onmouseout="this.style.color='black';">Levels</a>
+				</li>
+				<li style="display: flex; align-items: center;">
+					<a href="testimonials.html" style="text-decoration: none; color: black;"
+						onmouseover="this.style.color='#ffcc00';"
+						onmouseout="this.style.color='black';">Testimonials</a>
+				</li>
+				<li style="display: flex; align-items: center;">
+					<a href="contactus.html" style="text-decoration: none; color: black;"
+						onmouseover="this.style.color='#ffcc00';" onmouseout="this.style.color='black';">Contact Us</a>
+				</li>
+				<li style="
+			  border: 1px solid black;
+			  border-radius: 20px;
+			  padding: 6px 12px;
+			  display: flex;
+			  align-items: center;
+			">
+					<a href="test.html" style="text-decoration: none; color: black;"
+						onmouseover="this.style.color='#ffcc00';" onmouseout="this.style.color='black';">Spanish Level
+						Test</a>
+				</li>
+			</ul>
+			<img style="width: 10%;" class="responsive-inline" src="images/callanacredit.jpg" />
+			<img style="width: 10%;" class="responsive-inline" src="images/logoSpanish.png" />
+		</nav>
+
+	</header>
+
+	<!-- Wrapper -->
+	<div id="wrapper" class="divided">
+
+		<!-- Home Banner -->
+		<section
+			class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right"
+			id="home">
+			<p class="major">
+			</p>
+			<div class="content">
+				<h1 style="
+font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    font-weight: 200;
+    margin-top: -5px;
+    margin-bottom: 1rem;
+    text-align: center;
+    letter-spacing: 1px;
+    position: relative;
+    top: -35px;
+    left: -15px;">
+					<span style="color: rgb(255, 80, 80);">Learn</span>
+					<span style="color: rgb(255, 80, 80);">Spanish</span>
+				</h1>
+				<h1 style="
+			font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    font-weight: 200;
+    margin-top: -5px;
+    margin-bottom: 1rem;
+    text-align: center;
+    letter-spacing: 1px;
+    position: relative;
+    top: -35px;">
+					<span style="color: rgb(255, 80, 80);">in London</span>
+
+				</h1>
+
+				<p class="major">
+					<span class="stop">STOP STUDYING</span><br />
+					<span class="start">START SPEAKING</span>
+				</p>
+				<p style="font-size: 20px;">Callan Method is the best way to learn practical language skills. Learn
+					Spanish actively
+					by listening and speaking, during short, intense lessons with professional native-speaking
+					teachers.<br />Start with a free trial lesson, then choose any learning plan that suits you, build
+					your
+					own class schedule, and make progress faster than ever before.</p>
+
+				<div class="responsive-flex" style="display: flex; gap: 1rem; margin-top: 1.5rem; text-align: left;">
+					<a href="contactus.html" class="smooth-scroll-middle" style="
+				  display: inline-block;
+				  background-color: #fac32c;
+				  color: white;
+				  padding: 0.9rem 2rem;
+				  border-radius: 8px;
+				  font-size: 17px;
+				  font-weight: bold;
+				  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+				  text-decoration: none;
+				  transition: background-color 0.3s ease, box-shadow 0.3s ease;"
+						onmouseover="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 6px 16px rgba(0, 86, 179, 0.3)';"
+						onmouseout="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 4px 12px rgba(0, 123, 255, 0.2)';">
+						BOOK A FREE TRIAL LESSON
+					</a>
+					<a href="#location-free-test" class="smooth-scroll-middle" style="
+				  display: inline-block;
+				  background-color: rgb(234 172 0);
+				  color: white;
+				  padding: 0.9rem 2rem;
+				  border-radius: 8px;
+				  font-size: 17px;
+				  font-weight: bold;
+				  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+				  text-decoration: none;
+				  transition: background-color 0.3s ease, box-shadow 0.3s ease;"
+						onmouseover="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 6px 16px rgba(0, 86, 179, 0.3)';"
+						onmouseout="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 4px 12px rgba(0, 123, 255, 0.2)';">
+						CONTACT US
+					</a>
+				</div>
+
+			</div>
+			<div class="image">
+				<img src="images/home1.jpeg" alt="Callan Method Banner" />
+			</div>
+		</section>
+
+		<!-- How It Works -->
+		<section id="how-it-works" style="padding: 4rem 2rem; background-color: #fff;">
+			<h2 style="text-align: center; margin-bottom: 2rem;">How it works</h2>
+			<br />
+			<div
+				style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; max-width: 1200px; margin: auto; text-align: center;">
+				<div>
+					<img src="images/speak.png" alt="Speak and listen" style="height: 100px; margin-bottom: 1rem;" />
+					<br />
+					<strong>Speak and listen all the time</strong>
+					<p style="margin-top: 0.5rem;">No chit-chat, no time-wasting. Intense lessons, fast results. Develop
+						practical communication skills quickly.</p>
+				</div>
+				<div>
+					<img src="images/structure.png" alt="Structure" style="height: 100px; margin-bottom: 1rem;" />
+					<br />
+					<strong>Structure</strong>
+					<p style="margin-top: 0.5rem;">Every lesson follows a script. You know what to expect. You know
+						exactly what you are learning and can see your progress clearly.</p>
+				</div>
+				<div>
+					<img src="images/questions.png" alt="Question Answer" style="height: 100px; margin-bottom: 1rem;" />
+					<br />
+					<strong>Question – Answer formula</strong>
+					<p style="margin-top: 0.5rem;">Listen as the teacher asks you questions, learn correct grammar and
+						pronunciation as you answer (always with the teacher’s help).</p>
+				</div>
+				<div>
+					<img src="images/correct.png" alt="Speak Correct Repeat"
+						style="height: 100px; margin-bottom: 1rem;" />
+					<br />
+					<strong>Speak, Correct, Repeat</strong>
+					<p style="margin-top: 0.5rem;">Teachers help you correct any mistakes you make when speaking. You
+						practise the new language you’ve learned until you can use it confidently.</p>
+				</div>
+			</div>
+			<div style="text-align:center;">
+				<a href="contactus.html" class="smooth-scroll-middle" style="
+				display: inline-block;
+				background-color: #fac32c;
+				color: white;
+				padding: 0.9rem 2rem;
+				border-radius: 8px;
+				font-size: 17px;
+				font-weight: bold;
+				box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+				text-decoration: none;
+				transition: background-color 0.3s ease, box-shadow 0.3s ease;"
+					onmouseover="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 6px 16px rgba(0, 86, 179, 0.3)';"
+					onmouseout="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 4px 12px rgba(0, 123, 255, 0.2)';">
+					BOOK A FREE TRIAL LESSON
+				</a>
+			</div>
+		</section>
+
+		<!-- Callan Method Stages -->
+		<section class="wrapper style1" id="stages" style="padding: 4rem 2rem; background-color: #fff;">
+			<div
+				style="display: flex; flex-wrap: wrap; align-items: center; max-width: 1200px; margin: auto; gap: 2rem;">
+				<div style="flex: 1 1 400px; text-align: center;">
+					<img src="images/niveles-01.png" alt="Callan Method Stages"
+						style="width: 100%; max-width: 1299px; height: auto;" />
+				</div>
+				<div style="flex: 1 1 400px;">
+					<h2 style="text-align: center; margin-bottom: 2rem;">Callan Method Stages</h2>
+					<p style="font-size: 1.1rem; line-height: 1.6;">
+						Discover the progressive stages of the Callan Method. Each level builds on practical skills in
+						grammar, vocabulary, pronunciation, and fluency.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- What do we offer -->
+		<section style="padding: 4rem 2rem; background-color: #f9f9f9;">
+			<h2 style="text-align: center; margin-bottom: 2rem;">What do we offer?</h2>
+			<div style="
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+				gap: 2.5rem;
+				max-width: 1200px;
+				margin: 0 auto;
+				text-align: center;
+			  ">
+				<div style="padding: 1.5rem; border-radius: 1rem; background-color: #f9f9f9;">
+					<img src="images/ofrecemo-03.png" alt="Flexible schedules" style="    height: 160px;
+						margin-bottom: 1rem;
+						width: 200px;" />
+					<h3 style="font-size: 1.25rem; font-weight: 600;">Flexible Schedules</h3>
+				</div>
+				<div style="padding: 1.5rem; border-radius: 1rem; background-color: #f9f9f9;">
+					<img src="images/ofrecemo-01.png" alt="Group classes" style="    height: 160px;
+					margin-bottom: 1rem;
+					width: 200px;" />
+					<h3 style="font-size: 1.25rem; font-weight: 600;">Group Classes</h3>
+				</div>
+				<div style="padding: 1.5rem; border-radius: 1rem; background-color: #f9f9f9;">
+					<img src="images/ofrecemos.png" alt="Certificate" style="    height: 160px;
+					margin-bottom: 1rem;
+					width: 200px;" />
+					<h3 style="font-size: 1.25rem; font-weight: 600;">Certificate</h3>
+				</div>
+
+			</div>
+			<div style="text-align:center;">
+				<a href="contactus.html" class="smooth-scroll-middle" style="
+				display: inline-block;
+				background-color: #fac32c;
+				color: white;
+				padding: 0.9rem 2rem;
+				border-radius: 8px;
+				font-size: 17px;
+				font-weight: bold;
+				box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+				text-decoration: none;
+				transition: background-color 0.3s ease, box-shadow 0.3s ease;"
+					onmouseover="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 6px 16px rgba(0, 86, 179, 0.3)';"
+					onmouseout="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 4px 12px rgba(0, 123, 255, 0.2)';">
+					BOOK A FREE TRIAL LESSON
+				</a>
+			</div>
+			<br />
+			<br />
+			<div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+				<video src="images/testimonials1.mov" autoplay loop controls muted preload="auto"
+				style="width: 320px; height: 570px; background-color: #ddd; border-radius: 12px;">
+			  </video>
+			</div>
+		</section>
+
+		<!-- How to Register -->
+		<section id="register" class="register-section">
+			<div class="register-header">
+				<h2>HOW TO REGISTER</h2>
+			</div>
+			<div class="register-steps">
+				<div class="register-column">
+					<div class="step-card ">
+						<h3>Take a Free Test</h3>
+						<p>The first step is a short written test to determine your current level.</p>
+					</div>
+					<div class="step-card">
+						<h3>Choose Your Schedule</h3>
+						<p>Monday to Friday, Mornings and Evenings.</p>
+					</div>
+				</div>
+				<div class="timeline">
+					<div class="step-circle">1</div>
+					<div class="line"></div>
+					<div class="step-circle">2</div>
+					<div class="line"></div>
+					<div class="step-circle">3</div>
+				</div>
+				<div class="register-column">
+					<div class="step-card">
+						<h3>Free Trial Class</h3>
+						<p>Practice speaking and experience our classes in-person.</p>
+					</div>
+				</div>
+			</div>
+			<br />
+			<br />
+			<div class="register-footer">
+				<a href="contactus.html" class="smooth-scroll-middle" style="
+				  display: inline-block;
+				  background-color: #fac32c;
+				  color: white;
+				  padding: 0.9rem 2rem;
+				  border-radius: 8px;
+				  font-size: 17px;
+				  font-weight: bold;
+				  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+				  text-decoration: none;
+				  transition: background-color 0.3s ease, box-shadow 0.3s ease;"
+					onmouseover="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 6px 16px rgba(0, 86, 179, 0.3)';"
+					onmouseout="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 4px 12px rgba(0, 123, 255, 0.2)';">
+					GIVE IT A TRY!
+				</a>
+			</div>
+		</section>
+
+		<!-- Plans Section -->
+		<section class="wrapper style3 align-center" id="plans">
+			<div class="inner">
+				<h2 style="text-align: center; margin-bottom: 2rem;">We offer you different plans:</h2>
+				<div class="plan-cards">
+					<div class="plan-card">
+						<br />
+						<h3>1 MONTH</h3>
+						<p>Study 2 hours a week.<br />Registration fee included.</p>
+						<p class="price">£99 – <s>£150</s></p>
+						<br />
+						<div class="actions">
+							<a href="contactus.html" class="smooth-scroll-middle" style="
+							display: inline-block;
+							background-color: #fac32c;
+							color: white;
+							padding: 0.9rem 2rem;
+							border-radius: 8px;
+							font-size: 17px;
+							font-weight: bold;
+							box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+							text-decoration: none;
+							transition: background-color 0.3s ease, box-shadow 0.3s ease;"
+								onmouseover="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 6px 16px rgba(0, 86, 179, 0.3)';"
+								onmouseout="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 4px 12px rgba(0, 123, 255, 0.2)';">
+								FREE TRIAL
+							</a>
+						</div>
+					</div>
+					<div class="plan-card">
+						<br />
+						<h3>3 MONTHS</h3>
+						<p>Study 2 hours a week.<br />Registration fee included.</p>
+						<p class="price">£250 – <s>£320</s></p>
+						<br />
+						<div class="actions">
+							<a href="contactus.html" class="smooth-scroll-middle" style="
+							display: inline-block;
+							background-color: #fac32c;
+							color: white;
+							padding: 0.9rem 2rem;
+							border-radius: 8px;
+							font-size: 17px;
+							font-weight: bold;
+							box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+							text-decoration: none;
+							transition: background-color 0.3s ease, box-shadow 0.3s ease;"
+								onmouseover="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 6px 16px rgba(0, 86, 179, 0.3)';"
+								onmouseout="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 4px 12px rgba(0, 123, 255, 0.2)';">
+								FREE TRIAL
+							</a>
+						</div>
+					</div>
+					<div class="plan-card">
+						<span style="font-size: 0.8rem; color: #ffcb1e; text-align: center; font-size: 25px;">★</span>
+
+						<h3>6 MONTHS </h3>
+						<p>Study 2 hours a week.<br />Registration fee included.</p>
+						<p class="price">£450</p>
+						<br />
+						<div class="actions">
+							<a href="contactus.html" class="smooth-scroll-middle" style="
+							display: inline-block;
+							background-color: #fac32c;
+							color: white;
+							padding: 0.9rem 2rem;
+							border-radius: 8px;
+							font-size: 17px;
+							font-weight: bold;
+							box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+							text-decoration: none;
+							transition: background-color 0.3s ease, box-shadow 0.3s ease;"
+								onmouseover="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 6px 16px rgba(0, 86, 179, 0.3)';"
+								onmouseout="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 4px 12px rgba(0, 123, 255, 0.2)';">
+								FREE TRIAL
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br /> <br />
+		</section>
+
+		<!-- Testimonials Section -->
+		<section id="testimonials" style="padding: 4rem 2rem; background-color: #f9f9f9;">
+			<div style="text-align: center; margin-bottom: 2rem;">
+				<h2>Testimonials</h2>
+			</div>
+			<div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+				<video src="images/testimonio1.mov" loop controls  muted autoplay
+					style="width: 320px; height: 570px; background-color: #ddd; border-radius: 12px;">
+				</video>
+			</div>
+			<br />
+			<div style="text-align:center;">
+				<a href="contactus.html" class="smooth-scroll-middle" style="
+				display: inline-block;
+				background-color: #fac32c;
+				color: white;
+				padding: 0.9rem 2rem;
+				border-radius: 8px;
+				font-size: 17px;
+				font-weight: bold;
+				box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+				text-decoration: none;
+				transition: background-color 0.3s ease, box-shadow 0.3s ease;"
+					onmouseover="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 6px 16px rgba(0, 86, 179, 0.3)';"
+					onmouseout="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 4px 12px rgba(0, 123, 255, 0.2)';">
+					BOOK A FREE TRIAL LESSON
+				</a>
+			</div>
+		</section>
+
+		<!-- Hero -->
+		<section>
+			<style>
+				/* Contenedor flexible */
+				.testimonial-videos {
+					display: flex;
+					flex-wrap: wrap;
+					gap: 1rem;
+					justify-content: center;
+					padding: 0 1rem;
+				}
+
+				/* Imágenes adaptables */
+				.testimonial-videos img {
+					flex: 1 1 calc(33.333% - 1rem);
+					/* 3 columnas */
+					max-width: 300px;
+					/* opcional: límite máximo */
+					width: 100%;
+					border-radius: 30px;
+					object-fit: cover;
+				}
+
+				/* Media query para tablets y pantallas medianas */
+				@media (max-width: 992px) {
+					.testimonial-videos img {
+						flex: 1 1 calc(50% - 1rem);
+						/* 2 columnas */
+					}
+				}
+
+				/* Media query para móviles */
+				@media (max-width: 576px) {
+					.testimonial-videos img {
+						flex: 1 1 100%;
+						/* 1 columna */
+					}
+				}
+			</style>
+
+			<h2 style="text-align:center; margin-bottom:2rem;">Our students recommend us</h2>
+			<div class="testimonial-videos">
+				<img src="images/ourstudents.png" alt="Testimonio 1">
+				<img src="images/CURSO DE ESPAÑOL (3).png" alt="Testimonio 2">
+				<img src="images/CURSO DE ESPAÑOL.png" alt="Testimonio 3">
+			</div>
+		</section>
+
+		<!-- Location -->
+		<section  style="padding: 4rem 2rem; background-color: #fff;">
+			<div style="max-width: 1200px; margin: 0 auto;">
+				<h2 style="text-align: center; margin-bottom: 2rem;">Where are we located?</h2>
+				<div style="
+					display: flex;
+					flex-wrap: wrap;
+					justify-content: center;
+					align-items: stretch;
+					gap: 2rem;">
+					<div style="flex: 1 1 300px; max-width: 600px; display: flex; flex-direction: column;">
+						<img src="images/MAPA-01.png" alt="Map Location" style="
+							flex: 1;
+							width: 100%;
+							object-fit: cover;
+							border-radius: 12px;">
+					</div>
+				</div>
+				<br />
+				<h3 style="text-align: center; margin-bottom: 2rem;">1st Floor, 224 - 236 Walworth Rd, Elephant and Castle, London <span style="font-weight: bold;"> SE17 1JE</span></h3>
+			</div>
+		</section>
+
+		<!-- Contact Us -->
+		<section id="location-free-test" style="padding: 4rem 2rem; background-color: #fff;">
+			<div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+				<div
+					style="flex: 1 1 300px; max-width: 600px; display: flex; flex-direction: column; justify-content: center; background-color: #f9f9f9; padding: 2rem; border-radius: 12px;">
+					<h3 style="text-align: center; margin-bottom: 1rem;">Contact Us</h3>
+					<form action="https://formsubmit.co/londonspanishacademy@gmail.com" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
+						<!-- Desactiva el captcha de FormSubmit -->
+						<input type="hidden" name="_captcha" value="false">
+						<input type="hidden" name="_subject" value="Nuevo mensaje desde Contact Us">
+						<input type="hidden" name="_next" value="https://londonspanishacademy.uk/thankyou.html">
+
+						<label style="font-size: 0.9rem;">
+							Name *
+							<input type="text" name="name" required
+								style="margin-top: 0.5rem; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc;">
+						</label>
+						<label style="font-size: 0.9rem;">
+							Phone *
+							<input type="tel" name="phone" required
+								style="margin-top: 0.5rem; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc;">
+						</label>
+						<label style="font-size: 0.9rem;">
+							Email *
+							<input type="email" name="email" required
+								style="margin-top: 0.5rem; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc;">
+						</label>
+						<label style="font-size: 0.9rem;">
+							Message
+							<textarea name="message" rows="4"
+								style="margin-top: 0.5rem; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc;"></textarea>
+						</label>
+
+						<div style="text-align: center;">
+							<button type="submit" style="
+						display: inline-block;
+						background-color: #fac32c;
+						color: white;
+						padding: 0.9rem 2rem;
+						border-radius: 12px;
+						font-size: 17px;
+						font-weight: bold;
+						text-align: center;
+						border: none;
+						text-decoration: none;
+						box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+						cursor: pointer;
+						width: 100%;">
+								<span style="color: white;
+					  display: inline-block;
+					  width: 100%;
+					  position: relative;
+					  top: -14px;
+					  font-weight: 400">SEND</span>
+							</button>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</section>
+
+
+	</div>
+
+	<!-- Footer -->
+	<footer class="wrapper style1 align-center">
+		<div class="inner">
+		  <ul class="icons">
+			<li><a href="https://www.facebook.com/profile.php?id=61575851500332" class="icon brands fa-facebook-f" target="_blank"><span class="label">Facebook</span></a></li>
+			<li><a href="https://www.instagram.com/londonspanishacademy_?igsh=OHl4a2FzdG5vbXdp" class="icon brands fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+			<li><a href="https://wa.me/message/K6O2VEPAKKP5H1" class="icon brands fa-whatsapp" target="_blank"><span class="label">Website</span></a></li>
+		  </ul>
+		  <p>&copy; London Spanish Academy</p>
+		</div>
+	  </footer>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			const toggle = document.querySelector('.menu-toggle');
+			const navbar = document.querySelector('.navbar');
+			toggle.addEventListener('click', function () {
+				navbar.classList.toggle('active');
+			});
+		});
+	</script>
+</body>
+
+</html>

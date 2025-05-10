@@ -1,0 +1,585 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>London Spanish Academy</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="icon" href="images/logoSpanish.png" type="image/x-icon" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #fff;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem;
+        }
+
+        .navbar ul li a:hover {
+            color: #007bff;
+        }
+
+        .navbar ul li a.active {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+        }
+
+        /* Hamburger */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 22px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            height: 4px;
+            border-radius: 2px;
+            background-color: #333;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .navbar.active .menu-toggle span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .navbar.active .menu-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .navbar.active .menu-toggle span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .navbar ul {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+                padding: 1rem 0;
+            }
+
+            .navbar.active ul {
+                display: flex;
+            }
+
+            .navbar ul li {
+                margin: 0.5rem 0;
+            }
+
+            .responsive-inline {
+                width: 20% !important;
+            }
+
+            .imagen-old {
+                width: 97%;
+                left: 0%;
+                position: relative;
+            }
+        }
+
+        @media (min-width: 768px) {
+
+            .imagen-old {
+                width: 50%;
+                left: 24%;
+                position: relative;
+            }
+        }
+
+        /* Button styles */
+        .button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            font-size: 1rem;
+            text-align: center;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .button:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+        }
+
+        /* Section utilities */
+        section {
+            padding: 4rem 2rem;
+        }
+
+        .banner .content {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .banner .image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .banner .image img {
+            max-width: 100%;
+            border-radius: 12px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .image {
+            text-align: center;
+        }
+
+        .image img {
+            max-width: 100%;
+            border-radius: 12px;
+        }
+
+        form.contact {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        form.contact input,
+        form.contact textarea {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        form.contact button {
+            font-size: 1rem;
+            align-self: flex-start;
+        }
+
+        /* Custom styles for Plans section */
+        .plan-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .plan-card {
+            background: #f5faff;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            flex: 1 1 250px;
+            max-width: 300px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .plan-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .plan-card p {
+            margin: 0.5rem 0;
+            line-height: 1.4;
+        }
+
+        .plan-card .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .plan-card .actions .button {
+            display: inline-block;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .stop {
+            font-size: smaller;
+            color: rgb(255, 183, 67);
+        }
+    </style>
+</head>
+
+<body class="is-preload">
+
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul>
+                <li style="display: flex; align-items: center;">
+                    <a href="index.html" style="text-decoration: none; color: #000000;"
+                        onmouseover="this.style.color='#ffcc00';" onmouseout="this.style.color='black';">Home</a>
+                </li>
+                <li style="display: flex; align-items: center;">
+                    <a href="about.html" style="text-decoration: none; color: black;"
+                        onmouseover="this.style.color='#ffcc00';" onmouseout="this.style.color='black';">About Us</a>
+                </li>
+                <li style="display: flex; align-items: center;">
+                    <a href="courses.html" style="text-decoration: none; color: black;"
+                        onmouseover="this.style.color='#ffcc00';" onmouseout="this.style.color='black';">Courses</a>
+                </li>
+                <li style="display: flex; align-items: center;">
+                    <a href="levels.html" style="text-decoration: none; color: black;"
+                        onmouseover="this.style.color='#ffcc00';" onmouseout="this.style.color='black';">Levels</a>
+                </li>
+                <li style="display: flex; align-items: center;">
+                    <a href="testimonials.html" style="text-decoration: none; color: black;"
+                        onmouseover="this.style.color='#ffcc00';"
+                        onmouseout="this.style.color='black';">Testimonials</a>
+                </li>
+                <li style="display: flex; align-items: center;">
+                    <a href="contactus.html" style="text-decoration: none; color: black;"
+                        onmouseover="this.style.color='#ffcc00';" onmouseout="this.style.color='black';">Contact Us</a>
+                </li>
+                <li style="
+			  border: 1px solid black;
+			  border-radius: 20px;
+			  padding: 6px 12px;
+			  display: flex;
+			  align-items: center;
+			">
+                    <a href="test.html" style="text-decoration: none; color: black;"
+                        onmouseover="this.style.color='#ffcc00';" onmouseout="this.style.color='black';">Spanish Level
+                        Test</a>
+                </li>
+            </ul>
+            <img style="width: 10%;" class="responsive-inline" src="images/callanacredit.jpg" />
+            <img style="width: 10%;" class="responsive-inline" src="images/logoSpanish.png" />
+        </nav>
+
+    </header>
+
+    <section class="banner style2 orient-left content-align-left" style="background-color: #f9f9f9;">
+        <div class="image">
+            <img src="images/flag-spain.jpg" alt="About Us">
+        </div>
+        <br />
+        <br />
+        <br />
+    </section>
+
+    <!-- Hero / Intro -->
+    <section class="banner style2 orient-left content-align-left" style="background-color: #f9f9f9;">
+        <div class="content">
+            <h2>Courses In-person</h2>
+            <h3 style="    position: relative;
+            top: -15px;
+        ">Spanish classes</h3>
+            <ul style="margin-top:1rem; line-height:1.6;">
+                <li>Speak fluently, confidently and without translating.</li>
+                <li>Interact with the teacher in Spanish non-stop, for 2 hours session.</li>
+                <li>Beginner to advanced in 6 stages.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section class="wrapper style3 align-center" id="plans">
+        <div class="inner">
+            <h2 style="text-align: center; margin-bottom: 2rem;">We offer you different plans:</h2>
+            <div class="plan-cards">
+                <div class="plan-card">
+                    <br />
+                    <h3>1 MONTH</h3>
+                    <p>Study 2 hours a week.<br />Registration fee included.</p>
+                    <p class="price">£99 – <s>£150</s></p>
+                    <br />
+                    <div class="actions">
+                        <a href="contactus.html" class="smooth-scroll-middle" style="
+							display: inline-block;
+							background-color: #fac32c;
+							color: white;
+							padding: 0.9rem 2rem;
+							border-radius: 8px;
+							font-size: 17px;
+							font-weight: bold;
+							box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+							text-decoration: none;
+							transition: background-color 0.3s ease, box-shadow 0.3s ease;"
+                            onmouseover="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 6px 16px rgba(0, 86, 179, 0.3)';"
+                            onmouseout="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 4px 12px rgba(0, 123, 255, 0.2)';">
+                            FREE TRIAL
+                        </a>
+                    </div>
+                </div>
+                <div class="plan-card">
+                    <br />
+                    <h3>3 MONTHS</h3>
+                    <p>Study 2 hours a week.<br />Registration fee included.</p>
+                    <p class="price">£250 – <s>£320</s></p>
+                    <br />
+                    <div class="actions">
+                        <a href="contactus.html" class="smooth-scroll-middle" style="
+							display: inline-block;
+							background-color: #fac32c;
+							color: white;
+							padding: 0.9rem 2rem;
+							border-radius: 8px;
+							font-size: 17px;
+							font-weight: bold;
+							box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+							text-decoration: none;
+							transition: background-color 0.3s ease, box-shadow 0.3s ease;"
+                            onmouseover="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 6px 16px rgba(0, 86, 179, 0.3)';"
+                            onmouseout="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 4px 12px rgba(0, 123, 255, 0.2)';">
+                            FREE TRIAL
+                        </a>
+                    </div>
+                </div>
+                <div class="plan-card">
+                    <span style="font-size: 0.8rem; color: #ffcb1e; text-align: center; font-size: 25px;">★</span>
+
+                    <h3>6 MONTHS </h3>
+                    <p>Study 2 hours a week.<br />Registration fee included.</p>
+                    <p class="price">£450</p>
+                    <br />
+                    <div class="actions">
+                        <a href="contactus.html" class="smooth-scroll-middle" style="
+							display: inline-block;
+							background-color: #fac32c;
+							color: white;
+							padding: 0.9rem 2rem;
+							border-radius: 8px;
+							font-size: 17px;
+							font-weight: bold;
+							box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+							text-decoration: none;
+							transition: background-color 0.3s ease, box-shadow 0.3s ease;"
+                            onmouseover="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 6px 16px rgba(0, 86, 179, 0.3)';"
+                            onmouseout="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 4px 12px rgba(0, 123, 255, 0.2)';">
+                            FREE TRIAL
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br /> <br />
+    </section>
+
+    <!-- Callan App -->
+    <section id="callan-app" style="background-color: #f9f9f9; text-align: center; padding: 2rem;">
+        <h2 style="margin-bottom:2rem;">Callan App</h2>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="image">
+                <img src="images/older-man-with-smartphone-outdoors-city.jpg" alt="About Us"
+                    style="width: 100%; max-width: 100%; height: auto;">
+            </div>
+            <div class="content" style="margin-top: 1.5rem;">
+                <p>Enhance your Spanish learning between lessons with the Callan App. Access a wide range of interactive
+                    resources, including exercises, video dictations, pronunciation practice, eBooks, and audio
+                    materials. Whether you're in Stage 1 or Stage 6 of Spanish.</p>
+            </div>
+            <div style="margin-top:2rem;">
+                <a href="contactus.html" class="smooth-scroll-middle" style="
+                display: inline-block;
+                background-color: #fac32c;
+                color: white;
+                padding: 0.9rem 2rem;
+                border-radius: 8px;
+                font-size: 17px;
+                font-weight: bold;
+                box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+                text-decoration: none;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;"
+                    onmouseover="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 6px 16px rgba(0, 86, 179, 0.3)';"
+                    onmouseout="this.style.backgroundColor='#fac32c'; this.style.boxShadow='0 4px 12px rgba(0, 123, 255, 0.2)';">
+                    BOOK A FREE TRIAL LESSON
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location -->
+    <section id="location-free-test" style="padding: 4rem 2rem; background-color: #fff;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Where are we located?</h2>
+            <div style="
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: stretch;
+                gap: 2rem;">
+                <div style="flex: 1 1 300px; max-width: 600px; display: flex; flex-direction: column;">
+                    <img src="images/MAPA-01.png" alt="Map Location" style="
+                        flex: 1;
+                        width: 100%;
+                        object-fit: cover;
+                        border-radius: 12px;">
+                </div>
+            </div>
+            <br />
+            <h3 style="text-align: center; margin-bottom: 2rem;">1st Floor, 224 - 236 Walworth Rd, Elephant and Castle, London <span style="font-weight: bold;"> SE17 1JE</span></h3>
+        </div>
+    </section>
+
+    <!-- Contact Us -->
+    <section id="location-free-test" style="padding: 4rem 2rem; background-color: #f9f9f9;">
+        <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+            <div
+                style="flex: 1 1 300px; max-width: 600px; display: flex; flex-direction: column; justify-content: center; background-color: #f9f9f9; padding: 2rem; border-radius: 12px;">
+                <h3 style="text-align: center; margin-bottom: 1rem;">Contact Us</h3>
+                <form action="https://formsubmit.co/londonspanishacademy@gmail.com" method="POST"
+                    style="display: flex; flex-direction: column; gap: 1rem;">
+                    <!-- Desactiva el captcha de FormSubmit -->
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_subject" value="Nuevo mensaje desde Contact Us">
+                    <input type="hidden" name="_next" value="https://londonspanishacademy.uk/thankyou.html">
+
+                    <label style="font-size: 0.9rem;">
+                        Name *
+                        <input type="text" name="name" required
+                            style="margin-top: 0.5rem; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc;">
+                    </label>
+                    <label style="font-size: 0.9rem;">
+                        Phone *
+                        <input type="tel" name="phone" required
+                            style="margin-top: 0.5rem; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc;">
+                    </label>
+                    <label style="font-size: 0.9rem;">
+                        Email *
+                        <input type="email" name="email" required
+                            style="margin-top: 0.5rem; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc;">
+                    </label>
+                    <label style="font-size: 0.9rem;">
+                        Message
+                        <textarea name="message" rows="4"
+                            style="margin-top: 0.5rem; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc;"></textarea>
+                    </label>
+
+                    <div style="text-align: center;">
+                        <button type="submit" style="
+                    display: inline-block;
+                    background-color: #fac32c;
+                    color: white;
+                    padding: 0.9rem 2rem;
+                    border-radius: 12px;
+                    font-size: 17px;
+                    font-weight: bold;
+                    text-align: center;
+                    border: none;
+                    text-decoration: none;
+                    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+                    cursor: pointer;
+                    width: 100%;">
+                            <span style="color: white;
+                  display: inline-block;
+                  width: 100%;
+                  position: relative;
+                  top: -14px;
+                  font-weight: 400">SEND</span>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="wrapper style1 align-center">
+        <div class="inner">
+          <ul class="icons">
+            <li><a href="https://www.facebook.com/profile.php?id=61574957597733&sk=about" class="icon brands fa-facebook-f" target="_blank"><span class="label">Facebook</span></a></li>
+            <li><a href="https://www.instagram.com/londonspanishacademy_?igsh=OHl4a2FzdG5vbXdp" class="icon brands fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+            <li><a href="https://wa.me/message/K6O2VEPAKKP5H1" class="icon brands fa-whatsapp" target="_blank"><span class="label">Website</span></a></li>
+          </ul>
+          <p>&copy; London Spanish Academy</p>
+        </div>
+      </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('.navbar');
+            toggle.addEventListener('click', () => nav.classList.toggle('active'));
+        });
+    </script>
+</body>
+
+</html>
